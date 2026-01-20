@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório de Acessos | CodeFlow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <meta http-equiv="refresh" content="300" />
+  </head>
+  <body class="bg-gray-50 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto p-4 md:p-8">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-800 flex items-center">
+            <i class="fas fa-users-cog mr-3 text-indigo-600"></i>
+            Logs de Acesso ao Sistema
+          </h1>
+          <p class="text-gray-500 text-sm mt-1">Monitoramento em tempo real de entradas e matrículas.</p>
+        </div>
+        <div class="mt-4 md:mt-0">
+          <a href="{% url 'tela_login' %}" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition duration-150 ease-in-out"><i class="fas fa-plus mr-2"></i> Novo Registro</a>
+
+          <div class="mt-4">
+            <a href="/admin/seu_app_login/acesso/export/" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-bold"><i class="fas fa-file-excel mr-2"></i> Exportar para Excel</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="px-6 py-4 text-sm font-semibold text-gray-700 uppercase tracking-wider border-b">Nome Completo</th>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-700 uppercase tracking-wider border-b">Matrícula</th>
+                <th class="px-6 py-4 text-sm font-semibold text-gray-700 uppercase tracking-wider border-b text-right">Data/Hora do Acesso</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              {% for item in acessos %}
+                <tr class="hover:bg-indigo-50 transition-colors duration-200">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs mr-3">{{ item.nome|slice:':1'|upper }}</div>
+                      <span class="text-sm font-medium text-gray-900">{{ item.nome }}</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 tracking-widest">#{{ item.matricula }}</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right font-mono">
+                    <i class="far fa-clock mr-1 text-gray-400"></i>
+                    {{ item.data_acesso|date:'d/m/Y H:i' }}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="3" class="px-6 py-12 text-center text-gray-500 italic">
+                    <div class="flex flex-col items-center">
+                      <i class="fas fa-folder-open text-4xl mb-4 text-gray-300"></i>
+                      Nenhum acesso registrado até o momento.
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-4 text-right text-gray-400 text-xs">
+        Total de registros: <span class="font-bold text-gray-600">{{ acessos|length }}</span>
+      </div>
+    </div>
+    {% comment %} <script>
+      // Define o tempo em milissegundos (5 minutos = 300.000 ms)
+      setTimeout(function () {
+        location.reload()
+      }, 300.000)
+    </script> {% endcomment %}
+  </body>
+</html>

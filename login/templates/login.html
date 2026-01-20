@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Acesso ao Sistema</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
+        .errorlist { color: red; font-size: 0.9em; }
+        button { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Identifique-se para acessar</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Liberar Acesso</button>
+        </form>
+    </div>
+</body>
+</html>
