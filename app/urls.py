@@ -19,7 +19,7 @@ from django.urls import path
 from login.views import  tela_login,lista_acessos
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls , name='admin'),
     # Rota para a tela de identificação (Nome e Matrícula)
     path('teste/', tela_login, name='tela_login'),
     
