@@ -2,22 +2,110 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acesso ao Sistema</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; }
-        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
-        .errorlist { color: red; font-size: 0.9em; }
-        button { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+        :root {
+            --primary-color: #28a745;
+            --primary-hover: #218838;
+            --bg-color: #f4f7f6;
+            --back-gold: #e9bc00;
+            {% comment %} --back-atesa: #34a825; {% endcomment %}
+            --text-color: #333;
+
+
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--back-gold);
+            color: var(--text-color);
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+        }
+
+        .card { 
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h2 { 
+            margin-top: 0; 
+            font-size: 1.5rem; 
+            text-align: center;
+            color: #222;
+        }
+
+        /* Estilizando os campos que o Django gera automaticamente */
+        form p {
+            margin-bottom: 1rem;
+        }
+
+        form input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box; /* Garante que o padding não quebre o layout */
+            transition: border-color 0.3s;
+        }
+
+        form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+        }
+
+        .errorlist { 
+            color: #dc3545; 
+            font-size: 0.85em; 
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+
+        button { 
+            background: var(--back-gold); 
+            color: white; 
+            border: none; 
+            width: 100%;
+            padding: 12px; 
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px; 
+            cursor: pointer; 
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        button:hover { background: var(--primary-hover); }
+        button:active { transform: scale(0.98); }
+
+        .footer-text {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 1.5rem;
+        }
     </style>
 </head>
 <body>
     <div class="card">
-        <h2>Identifique-se para acessar</h2>
+        <h2>Lista de Presença</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Liberar Acesso</button>
         </form>
+        <div class="footer-text">
+            Sistema de Segurança Integrado
+        </div>
     </div>
 </body>
 </html>
