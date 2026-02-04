@@ -13,7 +13,7 @@ def tela_login(request):
                 nome=form.cleaned_data['nome'],
                 matricula=form.cleaned_data['matricula']
             )
-            return redirect('http://suportecoop.pythonanywhere.com/q/ago-2025-atesa')
+            return redirect('http://suportecoop.pythonanywhere.com/q/ago-2025-gold')
     else:
         form = AcessoForm()
     
@@ -26,3 +26,11 @@ def lista_acessos(request):
     numero = random.choice(list(nomes))
     print(numero)
     return render(request, 'lista.html', {'acessos': acessos})
+
+@login_required
+def sorteador(request):
+    acessos = Acesso.objects.all().order_by('-data_acesso')
+    nomes = list(acessos.values_list('nome', flat=True))
+    numero = random.choice(list(nomes))
+    
+    return render(request, 'sorteio.html', {'acessos': numero})

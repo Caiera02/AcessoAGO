@@ -5,6 +5,9 @@ class Acesso(models.Model):
     matricula = models.CharField(max_length=5)
     data_acesso = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.nome} - {self.matricula}"
+   
     def __clstr__(self):
         return f"{self.nome} - {self.matricula}"
     
