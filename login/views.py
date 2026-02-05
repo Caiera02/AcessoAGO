@@ -24,7 +24,7 @@ def lista_acessos(request):
     acessos = Acesso.objects.all().order_by('-data_acesso')
     return render(request, 'lista.html', {'acessos': acessos})
 
-@login_required
+@login_required(login_url='/admin/')
 def sorteador(request):
     acessos = Acesso.objects.all()
     lista_participantes = list(acessos.values('nome', 'matricula'))
