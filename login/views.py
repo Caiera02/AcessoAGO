@@ -22,15 +22,12 @@ def tela_login(request):
 @login_required(login_url='/admin/')
 def lista_acessos(request):
     acessos = Acesso.objects.all().order_by('-data_acesso')
-    nomes = list(acessos.values_list('nome', flat=True))
-    numero = random.choice(list(nomes))
-    print(numero)
     return render(request, 'lista.html', {'acessos': acessos})
 
 @login_required
 def sorteador(request):
-    acessos = Acesso.objects.all().order_by('-data_acesso')
-    nomes = list(acessos.values_list('nome', flat=True))
-    numero = random.choice(list(nomes))
+    acessos = Acesso.objects.all()
+    lista_participantes = list(acessos.values('nome', 'matricula'))
+    sorteado = random.choice(lista_participantes)
     
-    return render(request, 'sorteio.html', {'acessos': numero})
+    return render(request, 'sorteio.html', {'numero': sorteado})

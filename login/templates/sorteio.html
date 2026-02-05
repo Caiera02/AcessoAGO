@@ -1,1 +1,145 @@
-{{}}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" {% static 'IMG/icone' %}>
+    <title>Sorteador</title>
+    <style>
+      /* Centralização total da tela */
+      .sorteio-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #f4f7f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+      }
+      
+      /* O Círculo Central */
+      .circulo-central {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 8px solid #e9c524;
+        transition: all 0.5s ease;
+        position: relative;
+      }
+      
+      /* Animação de pulso para os segundos finais */
+      .pulso {
+        animation: pulsar 0.5s infinite alternate;
+        border-color: #dc3545;
+      }
+      
+      @keyframes pulsar {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+      
+      #contador {
+        font-size: 80px;
+        font-weight: bold;
+        color: #e9b528;
+      }
+      
+      #nome-vencedor {
+        font-size: 24px;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+        padding: 20px;
+      }
+      
+      .btn-lux {
+        padding: 15px 30px;
+        background: #e7a71c;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sorteio-overlay">
+      <div id="box-principal" class="circulo-central">
+        <div id="fase-inicial">
+          <button class="btn-lux" onclick="iniciarContagem()">SORTEAR</button>
+        </div>
+
+        <div id="fase-contagem" style="display: none; text-align: center;">
+          <div id="contador">10</div>
+        </div>
+
+        <div id="fase-resultado" style="display: none; text-align: center;">
+          <span style="font-size: 14px; color: #777;">VENCEDOR:</span>
+          <div id="nome-vencedor">{{numero.nome}} - {{numero.matricula}}</div>
+          <small onclick="location.reload()" style="cursor:pointer; color: #e9b528;">Refazer</small>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      function iniciarContagem() {
+        const box = document.getElementById('box-principal')
+        const fInicial = document.getElementById('fase-inicial')
+        const fContagem = document.getElementById('fase-contagem')
+        const elementoContador = document.getElementById('contador')
+      
+        fInicial.style.display = 'none'
+        fContagem.style.display = 'block'
+      
+        let tempo = 10
+      
+        const intervalo = setInterval(() => {
+          tempo--
+          elementoContador.innerText = tempo
+      
+          // Adiciona pulsação nos últimos 3 segundos
+          if (tempo <= 3) {
+            box.classList.add('pulso')
+            elementoContador.style.color = '#dc3545'
+          }
+      
+          if (tempo <= 0) {
+            clearInterval(intervalo)
+            revelar()
+          }
+        }, 1000)
+      }
+      
+      function revelar() {
+        const box = document.getElementById('box-principal')
+        document.getElementById('fase-contagem').style.display = 'none'
+        document.getElementById('fase-resultado').style.display = 'block'
+      
+        // Remove o pulso e expande o círculo para caber o nome se for grande
+        box.classList.remove('pulso')
+        box.style.width = 'auto'
+        box.style.minWidth = '250px'
+        box.style.borderRadius = '20px' // Fica levemente quadrado para o nome
+        box.style.borderColor = '#ffc107' // Cor de "ouro" para o vencedor
+      }
+    </script>
+  </body>
+</html>
