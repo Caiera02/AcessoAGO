@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.utils.html import format_html
 from login.models import MatriculaAutorizada,Acesso
 
 class AcessoForm(forms.Form):
@@ -8,15 +9,17 @@ class AcessoForm(forms.Form):
 
     def clean_matricula(self):
         matricula = self.cleaned_data.get('matricula')
-        if len(matricula) != 5:
-            raise ValidationError("A matrícula deve ter exatamente 5 dígitos.")
+        if len(matricula) != 4:
+            raise ValidationError("A matrícula deve ter exatamente 4 dígitos.")
         
         if not matricula.isdigit():
             raise ValidationError("A matrícula deve conter apenas números.")
     
         if Acesso.objects.filter(matricula=matricula).exists():
             # raise ValidationError("Você já preencheu a lista")
-            raise ValidationError('CLIQUE AQUI: https://www.youtube.com/live/Vp3ahyLs2Ug')
+            raise ValidationError(
+                format_html("CLIQUE AQUI: <a href='https://youtube.com/live/62DzEKaNSIg?feature=share'> ASSISTIR AGORA </a>")
+                )
     
         return matricula
     

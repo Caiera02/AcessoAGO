@@ -13,7 +13,7 @@ def tela_login(request):
                 nome=form.cleaned_data['nome'],
                 matricula=form.cleaned_data['matricula']
             )
-            return redirect('https://www.youtube.com/live/Vp3ahyLs2Ug')
+            return redirect('https://youtube.com/live/62DzEKaNSIg?feature=share')
     else:
         form = AcessoForm()
     
