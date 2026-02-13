@@ -13,7 +13,7 @@ def tela_login(request):
                 nome=form.cleaned_data['nome'],
                 matricula=form.cleaned_data['matricula']
             )
-            return redirect('http://suportecoop.pythonanywhere.com/q/ago-2025-gold')
+            return redirect('https://www.youtube.com/live/Vp3ahyLs2Ug')
     else:
         form = AcessoForm()
     
