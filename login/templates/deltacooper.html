@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACESSO A LIVE</title>
+    <link rel="stylesheet" href=" {% static 'CSS/deltacooper.css' %}" />
+  </head>
+  <body>
+    <img src= {% static 'IMG/capa.png' %} class="capa" />
+    <div class="body">
+    
+        <div class="login-container">
+            <div class="forklift-scene">
+                <img src= {% static 'IMG/delta.png' %} class="forklift" />
+            </div>
+
+            <div class="login-card">
+                <h2>Acesso a Live</h2>
+                <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    {{ form.as_p}}
+                </div>
+                
+                
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                <button type="submit">Liberar Acesso</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

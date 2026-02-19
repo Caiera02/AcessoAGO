@@ -17,7 +17,7 @@ def tela_login(request):
     else:
         form = AcessoForm()
     
-    return render(request, 'atesa.html', {'form': form})
+    return render(request, 'deltacooper.html', {'form': form})
 
 @login_required(login_url='/admin/')
 def lista_acessos(request):
