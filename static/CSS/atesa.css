@@ -1,0 +1,135 @@
+body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e0f2f1;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow-x: hidden; /* Evita scroll horizontal na animação */
+      }
+      
+      .login-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 900px;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        /* Animação de entrada */
+        animation: pullIn 1.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+      
+      /* Animação de entrada com efeito "puxão" */
+      @keyframes pullIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      .nurse-wrapper {
+        z-index: 2;
+        transition: all 0.3s ease;
+      }
+      
+      .nurse-img {
+        height: auto;
+        width: 100%;
+        max-height: 450px;
+        max-width: 400px;
+        filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.15));
+        display: block;
+      }
+      
+      .login-card {
+        background: white;
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 350px;
+        z-index: 1;
+        margin-left: -60px; /* Sobreposição para dar ideia de contato */
+      }
+      
+      h2 {
+        color: #2c3e50;
+        margin-top: 0;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+      
+      .input-group input  {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 15px;
+        border: 1.5px solid #eee;
+        border-radius: 12px;
+        box-sizing: border-box;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      
+      .input-group input:focus {
+        border-color: #42a5f5;
+      }
+      
+      button {
+        width: 100%;
+        padding: 14px;
+        background-color: #42a5f5;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+      }
+      
+      button:hover {
+        background-color: #1e88e5;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4);
+      }
+      
+      /* --- RESPONSIVIDADE --- */
+      
+      @media (max-width: 768px) {
+        .login-container {
+          flex-direction: column; /* Empilha no celular */
+          animation: slideUp 1s ease-out forwards;
+        }
+      
+        @keyframes slideUp {
+          from {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      
+        .nurse-img {
+          max-height: 300px; /* Menor no mobile */
+          margin-bottom: -40px; /* Sobrepõe o card verticalmente */
+        }
+      
+        .login-card {
+          margin-left: 0; /* Remove a sobreposição lateral */
+          padding: 30px 20px;
+          width: 90%;
+        }
+      }

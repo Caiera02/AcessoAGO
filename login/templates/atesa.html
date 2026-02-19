@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href=" {% static 'CSS/atesa.css' %}" />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="nurse-wrapper">
+        
+        <img src="{% static 'IMG/BIA_Mascote.png' %}" alt="Enfermeira" class="nurse-img" />
+      </div>
+
+      <div class="login-card">
+        <h2>Acesse a Live</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="input-group">
+            {{ form.as_p}}
+          </div>
+          
+          
+          {% comment %} {{ form.as_p }} {% endcomment %}
+          <button type="submit">Liberar Acesso</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
