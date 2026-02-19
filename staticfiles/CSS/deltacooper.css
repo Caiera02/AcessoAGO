@@ -1,0 +1,202 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4b9959;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.capa {
+    position: absolute;
+    max-width: 50%;
+    height: auto;
+    margin-bottom: 32%;
+    max-height: 500px;
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.1));
+    animation: forkliftBounce 2s ease-in-out infinite;
+    z-index: 10px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    /* Lado a lado no desktop */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    margin-right: 60px;
+    animation: pullIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.errorlist {
+    color: #dc3545;
+    font-size: 0.85em;
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 5px 0;
+}
+
+/* Ajuste na cena da empilhadeira */
+.forklift-scene {
+    margin-right: 5px;
+    z-index: 3;
+}
+
+
+.forklift {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.1));
+    animation: forkliftBounce 2s ease-in-out infinite;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+    z-index: 2;
+    margin-left: -100px;
+    /* Sobreposição elegante no desktop */
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* Estilização dos campos do Django form.as_p */
+.input-group p {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid #eee;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #42a5f5;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 165, 245, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background-color: #42a5f5;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #1e88e5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4);
+}
+
+/* --- MOBILE --- */
+
+
+@media (min-width: 800px) and (max-width: 1000px) {
+
+    .capa {
+        /* display: none; */
+        position: absolute;
+        max-width: 50%;
+        height: auto;
+        margin-bottom: 70%;
+        max-height: 500px;
+        filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.1));
+        animation: forkliftBounce 2s ease-in-out infinite;
+        z-index: 10px;
+    }
+
+    .login-container {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    .login-card {
+        margin-left: 0;
+        margin-top: -30px;
+        max-width: 100%;
+        /* padding: 15px; */
+        box-sizing: none;
+    }
+
+    .forklift-scene {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 800px) {
+
+    .capa {
+        /* display: none; */
+        position: absolute;
+        max-width: 50%;
+        max-height: 500px;
+        height: auto;
+        margin-left: 5%;
+        margin-bottom: 65vh;
+        filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.1));
+        animation: forkliftBounce 2s ease-in-out infinite;
+    
+    }
+
+    .login-container {
+        flex-direction: column;
+        padding: 40px 20px;
+
+    }
+
+    .login-card {
+        padding: 40px ;
+        margin-left: 0%;
+        display: grid;
+        grid-template-columns: 1fr;
+        /* border: solid 10px black; */
+
+    }
+
+
+    .forklift-scene {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Animações */
+/* @keyframes pullIn {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes forkliftBounce {
+    0%, 100% { transform: translateY(0) rotateY(5deg); }
+    50% { transform: translateY(-10px) rotateY(5deg); }
+} */

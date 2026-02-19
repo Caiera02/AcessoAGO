@@ -113,5 +113,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # No final do seu settings.py
 IMPORT_EXPORT_FORMATS = [XLSX, CSV]
